@@ -1,5 +1,30 @@
 @extends('layouts.app')
+    @section('styles')
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+    @stop
 
+    @section('scripts')
+        <script type="text/javascript"  src="{{ asset('js/module.min.js') }}"></script>
+        <script type="text/javascript"  src="{{ asset('js/hotkeys.min.js') }}"></script>
+        <script type="text/javascript"  src="{{ asset('js/uploader.min.js') }}"></script>
+        <script type="text/javascript"  src="{{ asset('js/simditor.min.js') }}"></script>
+
+        <script>
+           $(function(){
+            var editor = new Simditor({
+                    textarea: $('#editor'),
+                    upload:{
+                        url: '{{ route('topics.upload_image') }}',
+                        params: { _token: '{{ csrf_token() }}' },
+                        fileKey: 'upload_file',
+                        connectionCount: 3,
+                        leaveConfirm: '你乱搞？？？？'
+                }, 
+                pasteImage: true
+            });
+        })
+        </script>
+    @stop
 @section('content')
 
 <div class="container">
@@ -45,7 +70,7 @@
                 </div>
                 <div class="form-group">
                 	<label for="body-field">内容</label>
-                	<textarea name="body" id="body-field" class="form-control" rows="3">{{ old('body', $topic->body ) }}</textarea>
+                	<textarea name="body" id="editor" class="form-control" rows="3">{{ old('body', $topic->body ) }}</textarea>
                 </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">保存</button>
