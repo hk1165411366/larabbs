@@ -62,9 +62,8 @@
                 <div class="form-group">
                     <label for="category_id-field">所属分类</label>
                     <select class="form-control" name="category_id">
-                            <option value="">请选择</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ $topic->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
