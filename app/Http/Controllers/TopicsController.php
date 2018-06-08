@@ -44,7 +44,7 @@ class TopicsController extends Controller
 	    $topic->user_id = \Auth::id();
 	    $topic->save();
 
-		return redirect()->to($topic->link())->with('success', '创建成功!.');
+        return redirect()->to($topic->link())->with('success', '成功创建话题！');
 	}
 
 	public function edit(Topic $topic)
