@@ -13,8 +13,15 @@ class ReplyPolicy extends Policy
         return true;
     }
 
+    public function saving(Reply $reply)
+    {
+        $reply->content = clean($reply->content, 'user_topic_body');
+    }
+
     public function destroy(User $user, Reply $reply)
     {
-        return true;
+//        if ($user->isAuthorOf($reply) || $reply->topic()->user_id == auth()->id()) {
+            return true;
+//        }
     }
 }
