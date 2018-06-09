@@ -6,7 +6,6 @@
 @section('content')
 
     <div class="row">
-
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
             <div class="panel panel-default">
                 <div class="panel-body">

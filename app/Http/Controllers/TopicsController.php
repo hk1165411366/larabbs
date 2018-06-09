@@ -41,10 +41,10 @@ class TopicsController extends Controller
 	public function store(TopicRequest $request, Topic $topic)
 	{
 	    $topic->fill($request->all());
-	    $topic->user_id = \Auth::id();
+	    $topic->user_id = auth()->id();
 	    $topic->save();
 
-        return redirect()->to($topic->link())->with('success', '成功创建话题！');
+        return redirect()->to($topic->link())->with('success', '成功创建话题!');
 	}
 
 	public function edit(Topic $topic)
@@ -59,7 +59,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('success', '修改成功.');
+		return redirect()->to($topic->link())->with('success', '修改成功.');
 	}
 
 	public function destroy(Topic $topic)
