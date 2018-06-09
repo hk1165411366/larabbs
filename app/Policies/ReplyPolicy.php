@@ -20,8 +20,8 @@ class ReplyPolicy extends Policy
 
     public function destroy(User $user, Reply $reply)
     {
-//        if ($user->isAuthorOf($reply) || $reply->topic()->user_id == auth()->id()) {
+        if ($user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic)) {
             return true;
-//        }
+        }
     }
 }

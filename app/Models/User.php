@@ -53,4 +53,13 @@ class User extends Authenticatable
         $this->increment('notification_count');
         $this->laravelNotify($instance);
     }
+
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
+        $this->save();
+
+        //把nnotification表中的read_at字段清空
+        $this->unreadNotifications->markAsRead();
+    }
 }
